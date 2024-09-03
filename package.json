@@ -2,7 +2,7 @@
   "publisher": "2nthony",
   "name": "vscode-preferences-for-cursor",
   "displayName": "VSCode Preferences for Cursor",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "packageManager": "pnpm@9.7.1",
   "description": "VSCode Preferences for Cursor",
@@ -949,7 +949,7 @@
         "command": "views.moveViewUp",
         "when": "focusedView != ''"
       },
-            {
+      {
         "key": "cmd+k",
         "command": "-composer.startComposerPrompt",
         "when": "composerIsEnabled"
@@ -1001,7 +1001,17 @@
         "command": "cursorai.action.generateInTerminal",
         "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "VSCode Preferences",
+      "properties": {
+        "vscode-preferences.changeInlineEditToCmdI": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Change the inline edit keybinding from cmd+k to cmd+i"
+        }
+      }
+    }
   },
   "scripts": {
     "local:update": "tsx scripts/local/index.ts",
