@@ -21,7 +21,11 @@ export async function localUpdateCursorKeybindings() {
     return keybinding.key.startsWith('cmd+r ')
   })
   const allCmdKKeybindings = cursorDefaultKeybindings.filter((keybinding) => {
-    return keybinding.key === 'cmd+k' || keybinding.key.endsWith('+cmd+k')
+    return (keybinding.key === 'cmd+k'
+      || keybinding.key.endsWith('+cmd+k'))
+      && (keybinding.command.startsWith('aipopup')
+      || keybinding.command.startsWith('composer')
+      || keybinding.command.startsWith('cursorai'))
   })
 
   const keyChordLeaderKeybindings = [
