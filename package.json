@@ -2,7 +2,7 @@
   "publisher": "2nthony",
   "name": "vscode-preferences-for-cursor",
   "displayName": "VSCode Preferences for Cursor",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "packageManager": "pnpm@9.7.1",
   "description": "VSCode Preferences for Cursor",
