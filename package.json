@@ -422,16 +422,6 @@
         "when": "editorFocus"
       },
       {
-        "key": "cmd+r cmd+k",
-        "command": "-editor.action.defineKeybinding",
-        "when": "resource == 'vscode-userdata:/Users/2nthony/Library/Application%20Support/Cursor/User/keybindings.json'"
-      },
-      {
-        "key": "cmd+k cmd+k",
-        "command": "editor.action.defineKeybinding",
-        "when": "resource == 'vscode-userdata:/Users/2nthony/Library/Application%20Support/Cursor/User/keybindings.json'"
-      },
-      {
         "key": "cmd+r i",
         "command": "-inlineChat.start",
         "when": "editorFocus && inlineChatHasProvider && !editorReadonly"
