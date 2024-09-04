@@ -1,77 +1,12 @@
-// TODO: composer
-// TODO: sidebar chat panel
-
 import fs from 'node:fs/promises'
-import { parse } from 'jsonc-parser'
-import { fixturesCursorKeybindingsPath, localPackageJsonPath } from '../../../shared/local'
-
-interface Keybindings {
-  key: string
-  command: string
-  when?: string
-  args?: Record<string, any>
-}
+import { localPackageJsonPath } from '../utils'
+import { resolveCursorKeybindings } from '../../../src/utils/cursor/keybindings'
 
 export async function localUpdateCursorKeybindings() {
-  const cursorDefaultKeybindings = parse(
-    await fs.readFile(fixturesCursorKeybindingsPath, 'utf8'),
-  ) as Keybindings[]
-
-  const allCmdRComboKeybindings = cursorDefaultKeybindings.filter((keybinding) => {
-    return keybinding.key.startsWith('cmd+r ')
+  const resolvedKeybindings = await resolveCursorKeybindings({
+    changeInlineEditToCmdI: true,
+    changeChatToCtrlCmdI: false,
   })
-  const allCmdKKeybindings = cursorDefaultKeybindings.filter((keybinding) => {
-    return (keybinding.key === 'cmd+k'
-      || keybinding.key.endsWith('+cmd+k'))
-      && (keybinding.command.startsWith('aipopup')
-      || keybinding.command.startsWith('composer')
-      || keybinding.command.startsWith('cursorai'))
-  })
-
-  const keyChordLeaderKeybindings = [
-    {
-      key: 'cmd+r',
-      command: '-workbench.action.keychord.leader',
-      when: 'false',
-    },
-    {
-      key: 'cmd+k',
-      command: 'workbench.action.keychord.leader',
-      when: 'false',
-    },
-  ]
-
-  const cmdKComboKeybindings = allCmdRComboKeybindings.map((keybinding) => {
-    return [
-      {
-        ...keybinding,
-        command: `-${keybinding.command}`,
-      },
-      {
-        ...keybinding,
-        key: keybinding.key.replace('cmd+r', 'cmd+k'),
-      },
-    ]
-  }).flat()
-
-  const inlineChatKeybindings = allCmdKKeybindings.map((keybinding) => {
-    return [
-      {
-        ...keybinding,
-        command: `-${keybinding.command}`,
-      },
-      {
-        ...keybinding,
-        key: keybinding.key.replace('cmd+k', 'cmd+i'),
-      },
-    ]
-  }).flat()
-
-  const resolvedKeybindings = [
-    ...keyChordLeaderKeybindings,
-    ...cmdKComboKeybindings,
-    ...inlineChatKeybindings,
-  ]
 
   const localPackageJson = JSON.parse(await fs.readFile(localPackageJsonPath, 'utf8'))
   localPackageJson.contributes.keybindings = resolvedKeybindings

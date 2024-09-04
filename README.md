@@ -6,7 +6,10 @@
 ## Configurations
 
 <!-- configs -->
-<!-- empty -->
+| Key                                                    | Description                                           | Type      | Default |
+| ------------------------------------------------------ | ----------------------------------------------------- | --------- | ------- |
+| `vscode-preferences-for-cursor.changeInlineEditToCmdI` | Change the inline edit keybinding from cmd+k to cmd+i | `boolean` | `true`  |
+| `vscode-preferences-for-cursor.changeChatToCtrlCmdI`   | Change the chat keybinding from cmd+l to ctrl+cmd+i   | `boolean` | `false` |
 <!-- configs -->
 
 ## Commands

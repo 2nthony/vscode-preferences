@@ -993,12 +993,17 @@
       }
     ],
     "configuration": {
-      "title": "VSCode Preferences",
+      "title": "VSCodePreferences",
       "properties": {
-        "vscode-preferences.changeInlineEditToCmdI": {
+        "vscode-preferences-for-cursor.changeInlineEditToCmdI": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Change the inline edit keybinding from cmd+k to cmd+i"
+          "description": "Change the inline edit keybinding from cmd+k to cmd+i"
+        },
+        "vscode-preferences-for-cursor.changeChatToCtrlCmdI": {
+          "type": "boolean",
+          "default": false,
+          "description": "Change the chat keybinding from cmd+l to ctrl+cmd+i"
         }
       }
     }
@@ -1025,8 +1030,6 @@
     "@vscode/vsce": "^3.0.0",
     "bumpp": "^9.5.1",
     "eslint": "^9.9.0",
-    "esno": "^4.7.0",
-    "jsonc-parser": "^3.3.1",
     "lodash-es": "^4.17.21",
     "pnpm": "^9.7.1",
     "reactive-vscode": "^0.2.0",
